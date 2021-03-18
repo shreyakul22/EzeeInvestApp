@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+
+<div th:replace="fragments :: page-header"></div>
+
+<p th:unless="${clients} and ${clients.size()}">no transactions!</p>
+
+<div class="container body-content">
+    <h2>Clients</h2>
+    <ul>
+        <li th:each="client : ${clients}">
+            <a th:href="@{'/client/view/' + ${client.id}}" th:text="${client.name}"></a>
+        </li>
+    </ul>
+    <a th:href="@{'/employers/add'}">Add Client</a>
+
+</div>
+
+</body>
+</html>

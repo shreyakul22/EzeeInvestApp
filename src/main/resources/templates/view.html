@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container  body-content">
+<h1 th:text="${'Transaction: ' + transaction.name}">Default Title</h1>
+
+<nav th:replace="fragments :: page-header"></nav>
+
+<div class="transaction-listing">
+    <p th:text="${'ID: ' + transaction.id}"></p>
+    <p th:text="${'Name: ' + transaction.name}"></p>
+    <p>
+        Client: <a th:href="@{'/clients/view/' + ${transaction.client.id}}" th:text="${transaction.client.name}"></a>
+    </p>
+    <p> Banks:
+    <ul>
+        <li th:each="bank : ${transaction.banks}">
+            <a th:href="@{'/banks/view/' + ${bank.id}}" th:text="${bank.name}"></a>
+        </li>
+    </ul>
+    </p>
+</div>
+
+
+</body>
+</html>

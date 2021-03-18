@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container  body-content">
+<h1 th:text="${'Skill: ' + bank.name}">Default Title</h1>
+
+<nav th:replace="fragments :: page-header"></nav>
+
+<div class="transaction-listing">
+    <p th:text="${'Name: ' + bank.name}"></p>
+    <p th:text="${'Description: ' + bank.description}"></p>
+    <p> Jobs:
+        <ul>
+            <li th:each="transaction : ${bank.transactions}">
+                <a th:href="@{'/view/' + ${transaction.id}}" th:text="${transaction.name}"></a>
+            </li>
+        </ul>
+    </p>
+</div>
