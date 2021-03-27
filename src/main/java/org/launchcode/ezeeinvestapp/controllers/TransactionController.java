@@ -1,17 +1,14 @@
 package org.launchcode.ezeeinvestapp.controllers;
 
-import org.launchcode.ezeeinvestapp.models.data.ClientDao;
+import org.launchcode.ezeeinvestapp.models.data.AccountDao;
 import org.launchcode.ezeeinvestapp.models.data.TransactionDao;
+import org.launchcode.ezeeinvestapp.models.form.Account;
 import org.launchcode.ezeeinvestapp.models.form.Transaction;
 
-import org.launchcode.ezeeinvestapp.models.form.TransactionType;
-import org.launchcode.ezeeinvestapp.models.form.Client;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 
@@ -21,7 +18,7 @@ public class TransactionController {
     @Autowired
     private TransactionDao transactionDao;
     @Autowired
-    private ClientDao clientDao;
+    private AccountDao accountDao;
 
 
 
@@ -42,9 +39,9 @@ public class TransactionController {
 
     @PostMapping("/api/transaction/add")
     public void takeNewTransaction(@RequestBody Transaction newTransaction) {
-        Client client = clientDao.findById ( newTransaction.getClientIdToSet() ).orElseGet ( null );
+        Account account = accountDao.findById ( newTransaction.getAccountIdToSet() ).orElseGet ( null );
 
-        newTransaction.setClient (client);
+        newTransaction.setAccount (account);
 
         transactionDao.save ( newTransaction );
     }

@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Client {
+public class Account {
 
     @Id
     @GeneratedValue
@@ -22,23 +22,16 @@ public class Client {
     @Size (min = 3, max = 15)
     private String name;
 
-    @NotNull
-    @Size (min = 3, max = 15)
-    private String lastname;
-
-    // one student has many attendance so I created a list
-    @OneToMany (mappedBy = "student")
-    @JsonIgnore
-    private List<Transaction> attendanceDays;
+//    @OneToMany
+//    @JsonIgnore
+//    private List<Transaction> transactions;
 
 
-    public Client (String name, String lastname) {
+    public Account (String name) {
         this.name = name;
-        this.lastname = lastname;
     }
 
-
-    public Client () {
+    public Account () {
 
     }
 
@@ -50,21 +43,11 @@ public class Client {
         this.id = id;
     }
 
-    @JsonProperty ("firstname")
     public String getName () {
         return name;
     }
 
     public void setName (String name) {
         this.name = name;
-    }
-
-    public String getLastname () {
-        return lastname;
-    }
-
-    public void setLastname (String lastname) {
-        this.lastname = lastname;
-
     }
 }

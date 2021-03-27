@@ -1,8 +1,6 @@
 package org.launchcode.ezeeinvestapp.models.form;
 
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -17,11 +15,11 @@ public class Transaction {
     @GeneratedValue
     private int id;
 
-    // creating client instance to establish Many to One relationship
+    // creating account instance to establish Many to One relationship
 
     @ManyToOne
-    @JoinColumn(name="client_id")
-    private Client client;
+    @JoinColumn(name="account_id")
+    private Account account;
 
 
     @NotNull
@@ -34,13 +32,13 @@ public class Transaction {
     private Boolean credit;
 
     @Transient
-    private int clientIdToSet;
+    private int accountIdToSet;
 //    @NotNull
 //    private BigDecimal savings;
 
     // id, date, amount, credit, savings
 
-    // only to set client id for json
+    // only to set account id for json
 
 
     public Transaction() {
@@ -55,12 +53,12 @@ public class Transaction {
         this.id = id;
     }
 
-    public Client getClient () {
-        return client;
+    public Account getAccount () {
+        return account;
     }
 
-    public void setClient (Client client) {
-        this.client = client;
+    public void setAccount (Account account) {
+        this.account = account;
     }
 
     public LocalDate getDate () {
@@ -87,11 +85,11 @@ public class Transaction {
         this.credit = credit;
     }
 
-    public int getClientIdToSet () {
-        return clientIdToSet;
+    public int getAccountIdToSet () {
+        return accountIdToSet;
     }
 
-    public void setClientIdToSet (int clientIdToSet) {
-        this.clientIdToSet = clientIdToSet;
+    public void setAccountIdToSet (int accountIdToSet) {
+        this.accountIdToSet = accountIdToSet;
     }
 }
