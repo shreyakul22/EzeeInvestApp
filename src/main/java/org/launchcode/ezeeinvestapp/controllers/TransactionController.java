@@ -10,8 +10,9 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
-
+@CrossOrigin
 @RestController
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 public class TransactionController {
@@ -31,7 +32,7 @@ public class TransactionController {
         for (Transaction map : listofmaps) {
                 transactions.add (map);
         }
-
+        Collections.sort(transactions);
         return transactions;
 
     }

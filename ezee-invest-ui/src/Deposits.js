@@ -14,22 +14,15 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Deposits() {
+export default function Deposits(props) {
   const classes = useStyles();
+  var totalBalance = props.data.reduce((a, b) => a + (b['amount'] || 0), 0)
   return (
     <React.Fragment>
-      <Title>Recent Deposits</Title>
+      <Title>Total Balance</Title>
       <Typography component="p" variant="h4">
-        $3,024.00
+        ${totalBalance}
       </Typography>
-      <Typography color="textSecondary" className={classes.depositContext}>
-        on 15 March, 2019
-      </Typography>
-      <div>
-        <Link color="primary" href="#" onClick={preventDefault}>
-          View balance
-        </Link>
-      </div>
     </React.Fragment>
   );
 }

@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 
 @Entity
-public class Transaction {
+public class Transaction implements Comparable{
     @Id
     @GeneratedValue
     private int id;
@@ -91,5 +91,10 @@ public class Transaction {
 
     public void setAccountIdToSet (int accountIdToSet) {
         this.accountIdToSet = accountIdToSet;
+    }
+
+    @Override
+    public int compareTo (Object o) {
+        return this.getDate().compareTo(((Transaction) o).getDate());
     }
 }
