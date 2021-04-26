@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -41,7 +42,9 @@ public class TransactionController {
     @PostMapping("/api/transaction/add")
     public void takeNewTransaction(@RequestBody Transaction newTransaction) {
         Account account = accountDao.findById ( newTransaction.getAccountIdToSet() ).orElseGet ( null );
-
+        if (newTransaction.getDate() == null) {
+            newTransaction.setDate(LocalDate.now());
+        }
         newTransaction.setAccount (account);
 
         transactionDao.save ( newTransaction );
