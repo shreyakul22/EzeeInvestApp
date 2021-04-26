@@ -107,6 +107,10 @@ const useStyles = makeStyles((theme) => ({
 export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
+  const [value, setValue] = React.useState(0);
+  function handleRefresh(newValue) {
+        setValue(value + newValue);
+  }
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -122,7 +126,7 @@ export default function Dashboard() {
     .then(res => {
         setSummaryData(res);
     });
-  }, []);
+  }, [value]);
 
   return (
     <div className={classes.root}>
@@ -189,7 +193,7 @@ export default function Dashboard() {
             {/* Add Transaction */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <AddTransaction />
+                <AddTransaction onChange={handleRefresh} />
               </Paper>
             </Grid>
           </Grid>
